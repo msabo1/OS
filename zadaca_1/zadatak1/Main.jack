@@ -1,0 +1,76 @@
+class Main{
+
+  function bool contains(String str, char c){
+    var int i;
+    let i = 0;
+    while (i < str.length()){
+      if(str.charAt(i) = c){
+        return true;
+      }
+      let i = i + 1;
+    }
+    return false;
+  }
+
+  function char openingFromClosing(char c){
+    if(c = 41){
+      return 40;
+    }
+    if(c = 93){
+      return 91;
+    }
+    if(c = 125){
+      return 123;
+    }
+    if(c = 124){
+      return 124;
+    }
+    return 0;
+  }
+
+  function bool isValidExpression(String expression){
+    var String openingSymbols, closingSymbols, stack;
+    var int i;
+    var bool flag;
+    let stack = String.new(Math.divide(expression.length(), 2) + 1);
+    let openingSymbols = "({[";
+    let closingSymbols = ")}]";
+    let flag = true;
+    let i = 0;
+    while((i < expression.length()) & flag){
+      if(Main.contains(openingSymbols, expression.charAt(i))){
+        do stack.appendChar(expression.charAt(i));
+      }
+      if(Main.contains(closingSymbols, expression.charAt(i))){
+        if(stack.length() = 0){
+          let flag = false;
+        }
+        if(flag){
+          if(stack.charAt(stack.length() - 1) = Main.openingFromClosing(expression.charAt(i))){
+            do stack.eraseLastChar();
+          }else{
+            let flag = false;
+          }
+        }
+        
+      }
+      let i = i + 1;
+    }
+    if(stack.length() > 0){
+      let flag = false;
+    }
+    do openingSymbols.dispose();
+    do closingSymbols.dispose();
+    do stack.dispose();
+    return flag;
+  }
+
+  function void main(){
+    if(Keyboard.readLine("Enter expression: ")){
+      do Output.printString("Valid");
+    }else{
+      do Output.printString("Not valid");
+    }
+    return;
+  }
+}

@@ -1,0 +1,27 @@
+class Main{
+  function void main(){
+    var Matrix m1, m2, m3, m4, m5;
+    let m1 = Matrix.new(5);
+    let m2 = Matrix.eye(5);
+    do m1.setElem(0, 0, 5);
+    do m1.print();
+    let m3 = m1.add(m2);
+    do Output.println();
+    do m3.print();
+    let m4 = m1.multScalar(3);
+    do Output.println();
+    do m4.print();
+    do m4.setElem(0, 2, 2);
+    let m5 = m1.multMat(m4);
+    do Output.println();
+    do m5.print();
+    do Output.println();
+    do Output.printInt(m2.norm());
+    do m1.dispose();
+    do m2.dispose();
+    do m3.dispose();
+    do m4.dispose();
+    do m5.dispose();
+    return;
+  }
+}

@@ -1,0 +1,157 @@
+class Matrix {
+  field Array rows;
+  field int dim;
+
+  constructor Matrix new(int n){
+    var int i;
+    let rows = Array.new(n);
+    let dim = n;
+    let i = 0;
+    while (i < n){
+      let rows[i] = Array.new(n);
+      
+      let i = i + 1;
+    }
+    return this;
+  }
+
+  method int getElem(int i, int j){
+    var Array row;
+    let row = rows[i];
+    return row[j];
+  }
+
+  method void setElem(int i, int j, int value){
+    var Array row;
+    let row = rows[i];
+    let row[j] = value;
+    return;
+  }
+
+  method Matrix add(Matrix other){
+    var Matrix new;
+    var int i, j;
+    let new = Matrix.new(dim);
+    let i = 0;
+    while(i < dim){
+      let j = 0;
+      while(j < dim){
+        do new.setElem(i, j, getElem(i, j) + other.getElem(i, j));
+        let j = j + 1;
+      }
+      let i = i + 1;
+    }
+    return new;
+  }
+
+  method Matrix multScalar(int scalar){
+    var Matrix new;
+    var int i, j;
+    let new = Matrix.new(dim);
+    let i = 0;
+    while(i < dim){
+      let j = 0;
+      while(j < dim){
+        do new.setElem(i, j, scalar*getElem(i, j));
+        let j = j + 1;
+      }
+      let i = i + 1;
+    }
+    return new;
+  }
+
+  method Matrix multMat(Matrix other){
+    var Matrix new;
+    var int i, j, k, sum;
+    let new = Matrix.new(dim);
+    let i = 0;
+    while(i < dim){
+      let j = 0;
+      while(j < dim){
+        let k = 0;
+        let sum = 0;
+        while(k < dim){
+          let sum = sum + (getElem(i, k)*other.getElem(k, j));
+          let k = k + 1;
+        }
+        do new.setElem(i, j, sum);
+        let j = j + 1;
+      }
+      let i = i + 1;
+    }
+    return new;
+  }
+
+  method int norm(){
+    var int i, j, sum, abs;
+    let i = 0;
+    while(i < dim){
+      let j = 0;
+      while(j < dim){
+        let abs = Math.abs(getElem(i, j));
+        let sum = sum + (abs*abs);
+        let j = j + 1;
+      }
+      let i = i + 1;
+    }
+    return Math.sqrt(sum);
+  }
+
+   method void print(){
+    var int i;
+    do Output.printChar(91);
+    let i = 0;
+    while(i < (dim - 1)){
+      do _printRow(i);
+      do Output.println();
+      let i = i + 1;
+    }
+    do _printRow(dim - 1);
+    do Output.printChar(93);
+    return;
+  }
+
+  method void _printRow(int i){
+    var int j;
+    var Array row;
+    let row = rows[i];
+    do Output.printChar(91);
+    let j = 0;
+    while(j < (dim - 1)){
+      do Output.printInt(row[j]);
+      do Output.printChar(32);
+      let j = j + 1;
+    }
+    do Output.printInt(row[dim - 1]);
+    do Output.printChar(93);
+    return;
+  }
+
+  method void dispose(){
+    var Array row;
+    var int i;
+    let i = 0;
+    while (i < dim){
+      let row = rows[i];
+      do row.dispose();
+      let i = i + 1;
+    }
+    do rows.dispose();
+    do Memory.deAlloc(this);
+    return;
+  }
+
+ 
+
+  function Matrix eye(int n){
+    var Matrix matrix;
+    var int i;
+    let matrix = Matrix.new(n);
+    let i = 0;
+    while(i < n){
+      do matrix.setElem(i, i, 1);
+      let i = i + 1;
+    }
+    return matrix;
+  }
+}
