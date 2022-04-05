@@ -1,0 +1,51 @@
+class Main
+{
+    function void main()
+    {
+        do Output.printString("abs(-5) = ");
+        do Output.printInt(Math.abs(-5));
+        do Output.println();
+        
+        do Output.printString("max(-5, -4) = ");
+        do Output.printInt(Math.max(-5, -4));
+        do Output.println();
+        
+        do Output.printString("min(-5, -4) = ");
+        do Output.printInt(Math.min(-5, -4));
+        do Output.println();
+        
+        do Output.printString("multiply(4, 7) = ");
+        do Output.printInt(Math.multiply(4, 7));
+        do Output.println();
+        
+        do Output.printString("divide(68, 7) = ");
+        do Output.printInt(Math.divide(68, 7));
+        do Output.println();
+        
+        do Output.printString("divide(-68, 7) = ");
+        do Output.printInt(Math.divide(-68, 7));
+        do Output.println();
+        
+        do Output.printString("divide(-68, -7) = ");
+        do Output.printInt(Math.divide(-68, -7));
+        do Output.println();
+        
+        do Output.printString("sqrt(30) = ");
+        do Output.printInt(Math.sqrt(30));
+        do Output.println();
+        
+        do Output.printString("sqrt(15000) = ");
+        do Output.printInt(Math.sqrt(15000));
+        do Output.println();
+
+        do Output.printString("log(15000) = ");
+        do Output.printInt(Math.log(15000));
+        do Output.println();
+
+        do Output.printString("pow(-7, 4) = ");
+        do Output.printInt(Math.pow(-7, 5));
+        do Output.println();
+        
+        return;
+    }
+}

@@ -1,0 +1,40 @@
+class Main
+{
+    function void main()
+    {
+        var Array A, b, c;
+        
+        do Memory.poke(8000, 333);
+        do Output.printInt(Memory.peek(8000));
+        
+        let A = Array.new(5);
+        let A[1] = 14;
+        let A[2] = 13;
+        let A[3] = 12;
+        let A[4] = 11;
+        
+        do Output.println();
+        do Output.printInt(A[1]);
+        do Output.println();
+        do Output.printInt(A[2]);
+        do Output.println();
+        do Output.printInt(A[3]);
+        do Output.println();
+        do Output.printInt(A[4]);
+        do Output.println();
+
+        
+
+        let c = Array.new(10);
+        let b = Array.new(10);
+        do c.dispose();
+        do b.dispose();
+        do Output.println();
+        do Output.printInt(Memory.peek(2049));
+        do Memory.defrag();
+        do Output.println();
+        do Output.printInt(Memory.peek(2049));
+        
+        return;
+    }
+}

@@ -1,0 +1,136 @@
+class Math
+{
+    static Array twoToThe;
+    
+    function void init()
+    {
+        var int i, pow;
+        let twoToThe = Array.new(16);
+        
+        let pow = 1;
+        while (i < 16)
+        {
+            let twoToThe[i] = pow;
+            let pow = pow + pow;
+            let i = i + 1;
+        } 
+        return;
+    }
+    
+    function int multiply(int x, int y)
+    {
+        var int sum, shifted, i;
+        let shifted = x;
+        
+        while (i < 16)
+        {
+            if (twoToThe[i] & y)
+            {
+                let sum = sum + shifted;
+            }
+            let shifted = shifted + shifted;
+            let i = i + 1;
+        }
+        
+        return sum;
+    }
+    
+    function int divide(int x, int y)
+    {
+        var int q, sign;
+        if(x*y < 0){
+            let sign = -1;
+        }else{
+            let sign = 1;
+        }
+        let x = Math.abs(x);
+        let y = Math.abs(y);
+        if(y > x){
+            return 0;
+        }
+        let q = Math.divide(x, 2*y);
+        if((x - (2*q*y)) < y){
+            return sign*2*q;
+        }else{
+            return sign*(2*q + 1);
+        }
+    }
+    
+    function int sqrt(int x)
+    {
+        var int i, y, pow;
+        
+        if (x < 0)
+        {
+            return 0;
+        }
+        
+        let i = 7;
+        while (i > -1)
+        {
+            let pow = Math.multiply(y + twoToThe[i], y + twoToThe[i]);
+            if (pow < x)
+            {
+                let y = y + twoToThe[i];
+            }
+            let i = i - 1;
+        }
+        
+        return y;
+    }
+    
+    function int abs(int x)
+    {
+        if (x < 0)
+        {
+            return -x;
+        }
+        return x;
+    }
+    
+    function int min(int x, int y)
+    {
+        if (x < y)
+        {
+            return x;
+        }
+        return y;
+    }
+    
+    function int max(int x, int y)
+    {
+        if (x > y)
+        {
+            return x;
+        }
+        return y;
+    }
+
+    function int log(int x){
+        var int i;
+        let i = 1;
+        while(i < 16){
+            if(twoToThe[i] > x){
+                return i - 1;
+            }
+            let i = i + 1;
+        }
+        return -1;
+    }
+
+    function int pow(int a, int b){
+        var int result;
+        let result = 1;
+        while(b > 0){
+            if(1 & b){
+                let b = b - 1;
+                let result = result * a;
+                let b = b / 2;
+            }else{
+                let b = b / 2;
+            }
+            let a = a * a;
+        }
+        return result;
+    }
+}
